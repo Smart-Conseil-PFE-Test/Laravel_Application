@@ -1,4 +1,5 @@
 <?php
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -11,19 +12,19 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie', 'articles'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie','articles/*', 'articles', 'articles/{id}'],  // Add the articles/{id} route
 
-    'allowed_methods' => ['*'],
+    'allowed_methods' => ['*'],  // Allow all HTTP methods
 
-    'allowed_origins' => ['http://localhost:4200'],
+    'allowed_origins' => ['http://localhost:4200'],  // Allow localhost for development
 
-    'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => [],  // Empty if no specific patterns needed
 
-    'allowed_headers' => ['*'],
+    'allowed_headers' => ['*'],  // Allow all headers
 
-    'exposed_headers' => [],
+    'exposed_headers' => [],  // No specific exposed headers
 
-    'max_age' => 0,
+    'max_age' => 0,  // No caching for CORS
 
-    'supports_credentials' => false,
+    'supports_credentials' => false,  // Set to false unless you want to allow credentials
 ];
