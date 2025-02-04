@@ -1,4 +1,4 @@
-# Laravel Application Documentation
+# Laravel Articles App
 
 ## Project Overview
 
