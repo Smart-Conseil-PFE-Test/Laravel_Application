@@ -74,15 +74,36 @@ laravel_application/
 
 ```json
 [
-  {
-    "id": 1,
-    "title": "Introduction to Laravel",
-    "image": "/images/laravel.jpg",
-    "introduction": "Learn the basics of Laravel...",
-    "description": "Laravel is a web application framework...",
-    "language": "EN",
-    "numVisit": 150
-  }
+{
+  "id": "1",
+  "Title": "Article1",
+  "Image": "image.jpg",
+  "HeaderImage": "header.jpg",
+  "Introduction": "This is an introduction.",
+  "Description": "This is a description.",
+  "Language": "en",
+  "KeyWords": "sample, article",
+  "State": 1,
+  "NumVisit": 0,
+  "IdTheme": 1,
+  "IdUser": 1,
+  "IdHost": 1
+},
+{
+  "id": "2",
+  "Title": "Article2",
+  "Image": "image.jpg",
+  "HeaderImage": "header.jpg",
+  "Introduction": "This is an introduction.",
+  "Description": "This is a description.",
+  "Language": "en",
+  "KeyWords": "sample, article",
+  "State": 1,
+  "NumVisit": 0,
+  "IdTheme": 1,
+  "IdUser": 1,
+  "IdHost": 1
+}
 ]
 ```
 
@@ -105,16 +126,19 @@ Edit
 
 ```json
 {
-  "id": 1,
-  "title": "Introduction to Laravel",
-  "image": "/images/laravel.jpg",
-  "headerImage": "/images/header.jpg",
-  "introduction": "Learn the basics of Laravel...",
-  "description": "Laravel is a web application framework...",
-  "language": "EN",
-  "keyWords": "Laravel, PHP, Framework",
-  "numVisit": 150,
-  "lastMod": "2025-02-01 12:34:56"
+  "id": "2",
+  "Title": "Article2",
+  "Image": "image.jpg",
+  "HeaderImage": "header.jpg",
+  "Introduction": "This is an introduction.",
+  "Description": "This is a description.",
+  "Language": "en",
+  "KeyWords": "sample, article",
+  "State": 1,
+  "NumVisit": 0,
+  "IdTheme": 1,
+  "IdUser": 1,
+  "IdHost": 1
 }
 ```
 
