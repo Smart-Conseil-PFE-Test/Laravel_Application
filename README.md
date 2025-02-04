@@ -1,66 +1,176 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Application Documentation
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Project Overview
 
-## About Laravel
+This Laravel application provides a simple backend for managing articles, exposing two endpoints:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- `GET /articles`: Fetch all articles.
+- `GET /articles/{id}`: Fetch a specific article by ID.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Article Model Structure
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The database schema for the **Article** model is defined as follows:
 
-## Learning Laravel
+| Field        | Type        | Description                           |
+|--------------|-------------|---------------------------------------|
+| `id`         | int         | Primary Key                           |
+| `title`      | varchar(1000)| Article title                        |
+| `image`      | varchar(255)| Path to the article image             |
+| `headerImage`| varchar(255)| Path to the header image              |
+| `introduction`| mediumtext  | Article introduction                  |
+| `description`| text        | Full description of the article       |
+| `lastMod`    | datetime    | Last modified timestamp, default `CURRENT_TIMESTAMP` |
+| `language`   | varchar(2)  | Language code                         |
+| `keyWords`   | varchar(1000)| Associated keywords                  |
+| `state`      | int         | Article state                         |
+| `numVisit`   | int         | Number of visits                      |
+| `idTheme`    | int         | Theme ID                              |
+| `idUser`     | int         | User ID                               |
+| `idHost`     | int         | Host ID                               |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Directory Structure
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+laravel_application/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/
+│   │       ├── ArticleController.php : Controller for handling article-related requests
+│   │       └── Controller.php : Base controller for the app
+│   ├── Models/
+│   │   └── Article.php : Article model defining the schema and logic for article data
+│   └── Providers/
+│       └── AppServiceProvider.php : Application service provider for bootstrapping services
+├── bootstrap/ : Framework bootstrap files  
+├── config/ : Configuration files  
+├── database/ : Database migrations, seeders, and factories  
+├── public/ : Web-accessible resources  
+├── resources/ : View templates and frontend assets  
+├── routes/
+│   ├── console.php : Artisan console routes  
+│   └── web.php : Web routes including API endpoints for articles  
+├── storage/ : Compiled assets, logs, and other generated files  
+├── tests/ : Unit and feature tests  
+├── vendor/ : Composer dependencies  
+├── artisan : CLI entry point for Laravel  
+├── composer.json : Composer configuration file  
+├── package.json : NPM configuration for managing frontend assets  
+├── postcss.config.js : PostCSS configuration  
+├── tailwind.config.js : Tailwind CSS configuration  
+├── vite.config.js : Vite build configuration  
+└── README.md : Project readme  
+```
 
-## Laravel Sponsors
+## Endpoints Documentation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 1. Fetch All Articles
 
-### Premium Partners
+- **URL**: `http://127.0.0.1:8000/articles`
+- **Method**: `GET`
+- **Description**: Returns a list of all available articles.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+**Sample Response**:
 
-## Contributing
+```json
+[
+  {
+    "id": 1,
+    "title": "Introduction to Laravel",
+    "image": "/images/laravel.jpg",
+    "introduction": "Learn the basics of Laravel...",
+    "description": "Laravel is a web application framework...",
+    "language": "EN",
+    "numVisit": 150
+  }
+]
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 2. Fetch Article by ID
 
-## Code of Conduct
+URL: http://127.0.0.1:8000/articles/{id}
+Method: GET
+Description: Fetches details of a specific article by its ID.
+Sample Request:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+bash
+Copy
+Edit
+GET /articles/1
+Sample Response:
 
-## Security Vulnerabilities
+json
+Copy
+Edit
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```json
+{
+  "id": 1,
+  "title": "Introduction to Laravel",
+  "image": "/images/laravel.jpg",
+  "headerImage": "/images/header.jpg",
+  "introduction": "Learn the basics of Laravel...",
+  "description": "Laravel is a web application framework...",
+  "language": "EN",
+  "keyWords": "Laravel, PHP, Framework",
+  "numVisit": 150,
+  "lastMod": "2025-02-01 12:34:56"
+}
+```
 
-## License
+### Technical Stack
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Backend: Laravel 11.31
+Database: MySQL
+Development Tools: Composer, Vite, PostCSS
+Testing Tools: PHPUnit, Mockery
+Setup Instructions
+Clone the repository:
+
+bash
+Copy
+Edit
+git clone https://github.com/Smart-Conseil-PFE-Test/Laravel_Application.git
+
+cd your-repository
+
+### Install dependencies
+
+bash
+Copy
+Edit
+composer install
+npm install
+Set up environment file: Copy .env.example to .env and configure database and other settings:
+
+bash
+Copy
+Edit
+cp .env.example .env
+Generate application key:
+
+bash
+Copy
+Edit
+php artisan key:generate
+Run migrations:
+
+bash
+Copy
+Edit
+php artisan migrate
+Serve the application:
+
+bash
+Copy
+Edit
+php artisan serve
+Now, the application should be running at http://127.0.0.1:8000.
+
+For any issues or contributions, feel free to open an issue or submit a pull request.
+
+css
+Copy
+Edit
+
+This structure enhances readability, ensures better understanding, and organizes the technical details effectively for a markdown file.
